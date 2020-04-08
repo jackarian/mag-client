@@ -3,24 +3,24 @@ import {Routes, RouterModule} from '@angular/router';
 /**
  * Componenti del modulo
  */
-import {ArticoliListComponent} from './articoli-list/articoli-list.component';
-import {ArticoliDetailComponent} from './articoli-detail/articoli-detail.component'
+import {LocationListComponent} from './location-list/location-list.component';
+import {LocationDetailComponent} from './location-detail/location-detail.component'
 import { AuthGuard } from '../auth/_guards/auth.guard';
 
 const routes: Routes = [{
-    path: 'articoli',
+    path: 'location',
     children: [
         {
             path: '',
-            component: ArticoliListComponent
+            component: LocationDetailComponent
         },
         {
             path: 'page/:page',
-            component: ArticoliListComponent
+            component: LocationDetailComponent
         },
         {
             path:':id',
-            component: ArticoliDetailComponent,
+            component: LocationDetailComponent,
             canActivate:[AuthGuard]
         }
     ]
@@ -30,4 +30,4 @@ const routes: Routes = [{
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class ArticoliRoutingModule {}
+export class LocationRoutingModule {}

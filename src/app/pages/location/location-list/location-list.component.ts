@@ -4,23 +4,23 @@ import {ActivatedRoute} from '@angular/router';
 import {map} from 'rxjs/operators';
 
 // App imports
-import {Articolo} from '../articolo';
-import {ArticoloPagination} from '../articolo-pagination';
-import {ArticoliService} from '../_services/articoli.service';
+import {Location} from '../location';
+import {LocationPagination} from '../location-pagination';
+import {LocationService} from '../_services/location.service';
 
 @Component({
-    selector: 'app-articoli-list',
-    templateUrl: './articoli-list.component.html',
-    styleUrls: ['./articoli-list.component.scss']
+    selector: 'app-location-list',
+    templateUrl: './location-list.component.html',
+    styleUrls: ['./location-list.component.scss']
 })
-export class ArticoliListComponent implements OnInit {
+export class LocationListComponent implements OnInit {
 
-    articoli: Articolo[];
-    pagination: ArticoloPagination;
+    locations: Location[];
+    pagination: LocationPagination;
     isLoading: Boolean = false;
     current_page: number;
 
-    constructor(private articoliService: ArticoliService, private route: ActivatedRoute) {}
+    constructor(private locationService: LocationService, private route: ActivatedRoute) {}
 
     ngOnInit() {        
         this.getArticoli();
@@ -29,22 +29,22 @@ export class ArticoliListComponent implements OnInit {
     getArticoli(): void {
        
         this.isLoading = true;
-        this.articoliService.getArticoli()
+        this.locationService.getLocations()
             .subscribe(
                 response => this.handleResponse(response),
                 error => this.handleError(error));
 
     }
     goToPage(page:number){
-        this.articoliService.getArticoliAtPage(page).
+        this.locationService.getLocationAtPage(page).
             subscribe(response => this.handleResponse(response),
                 error => this.handleError(error));
                 
     }    
-    protected handleResponse(response: ArticoloPagination) {
+    protected handleResponse(response: LocationPagination) {
         this.isLoading = false;                
         this.pagination = response;               
-        this.articoli = response.data;
+        this.locations = response.data;
         console.log(response)
 
     }

@@ -9,16 +9,16 @@
         <div class="collapse navbar-collapse" id="navbarCollapse"> 
             <ul class="navbar-nav ml-auto"> 
                 <li class="nav-item"> 
-                    <a class="nav-link" [routerLink]="['/permessi']" routerLinkActive="active" (click)="setTitle('Permessi')">Permessi</a>           
+                    <a class="nav-link" [routerLink]="['/intallazioni']" routerLinkActive="active" (click)="setTitle('Installazioni')">Location</a>           
                 </li>
                 <li class="nav-item"> 
-                    <a class="nav-link" [routerLink]="['/articoli']" routerLinkActive="active" (click)="setTitle('Articoli')">Articoli</a>           
+                    <a class="nav-link" [routerLink]="['/location']" routerLinkActive="active" (click)="setTitle('Location')">Location</a>           
                 </li>                
                 <li *ngIf="!auth.isAuthenticated()" class="nav-item"> <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active" (click)="setTitle('Login')">Login</a> </li> 
                 <li *ngIf="!auth.isAuthenticated()" class="nav-item"> <a class="nav-link" [routerLink]="['/register']" routerLinkActive="active" (click)="setTitle('Register')">Register</a> </li>
                 <li *ngIf="auth.isAuthenticated()" class="nav-item"> 
                     <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-secondary" id="dropdownBasic1" ngbDropdownToggle>{{ auth.currentUser?.name }}</button>
+                        <button class="btn btn-secondary" id="dropdownBasic1" ngbDropdownToggle>{{ auth.currentUser?.username }}</button>
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1"> 
                             <button class="dropdown-item" (click)="onLogout();">Logout</button>
                         </div> 

@@ -5,14 +5,15 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
 import {environment} from '../../../../environments/environment';
-import {Articolo} from '../articolo';
-import {ArticoloPagination} from '../articolo-pagination';
+import {endpoints} from '../../../../environments/endpoint';
+import {Location} from '../location';
+import {LocationPagination} from '../location-pagination';
 import {HttpErrorHandler, HandleError} from '../../../shared/_services/http-handle-error.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ArticoliService {
+export class LocationService {
 
     private readonly apiUrl = environment.apiUrl;
     private articoliUrl = this.apiUrl + '/articoli';
@@ -22,22 +23,22 @@ export class ArticoliService {
         this.handleError = httpErrorHandler.createHandleError('ArticoliSerice');
         
     }
-    getArticoli(): Observable<ArticoloPagination> {
-        return this.http.get<ArticoloPagination>(this.articoliUrl)
+    getLocations(): Observable<LocationPagination> {
+        return this.http.get<LocationPagination>(this.articoliUrl)
             .pipe(
                 catchError(error => this.handleError(error))
             );
     }
-    getArticoliAtPage(page:number): Observable<ArticoloPagination> {
-        return this.http.get<ArticoloPagination>(this.articoliUrl+`?page=${page}`)
+    getLocationAtPage(page:number): Observable<LocationPagination> {
+        return this.http.get<LocationPagination>(this.articoliUrl+`?page=${page}`)
             .pipe(
                 catchError(error => this.handleError(error))
             );
     }
 
     /** GET bike detail from bike-detail endpoint */
-    getArticoloDetail(id: string): Observable<Articolo> {
-        return this.http.get<Articolo>(this.articoliUrl + `/${id}`)
+    getLocationDetail(id: string): Observable<LocationPagination> {
+        return this.http.get<LocationPagination>(this.articoliUrl + `/${id}`)
             .pipe(
                 catchError(error => this.handleError(error))
             );
