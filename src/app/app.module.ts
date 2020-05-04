@@ -9,27 +9,30 @@ import {NavComponent} from './layout/nav/nav.component';
 import {AuthModule} from './pages/auth/auth.module';
 import {PermessiModule} from './pages/permessi/permessi.module';
 import {LocationModule} from './pages/location/location.module';
+
+import {InstallazioneModule} from './pages/installazione/installazione.module';
 import {HttpErrorHandler} from './shared/_services/http-handle-error.service';
 import {AppHttpInterceptorService} from './shared/_services/http-interceptor.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule }   from '@angular/forms';
+import {NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 @NgModule({
     declarations: [
         AppComponent,
         NavComponent,
-    ],
+    ],    
     imports: [
-        BrowserModule,
+        BrowserModule,       
         AppRoutingModule,
         HttpClientModule,
         HomeModule,
         AuthModule,
         PermessiModule,
         LocationModule,
-        FormsModule,
-        NgbModule.forRoot()
+        InstallazioneModule,       
+        NgbModule
 
     ],
     providers: [

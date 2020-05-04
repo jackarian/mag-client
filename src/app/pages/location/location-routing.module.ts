@@ -12,7 +12,7 @@ const routes: Routes = [{
     children: [
         {
             path: '',
-            component: LocationDetailComponent
+            component: LocationListComponent
         },
         {
             path: 'page/:page',

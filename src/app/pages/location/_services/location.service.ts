@@ -15,22 +15,22 @@ import {HttpErrorHandler, HandleError} from '../../../shared/_services/http-hand
 })
 export class LocationService {
 
-    private readonly apiUrl = environment.apiUrl;
-    private articoliUrl = this.apiUrl + '/articoli';
+    
+    
     private handleError: HandleError;
 
     constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
-        this.handleError = httpErrorHandler.createHandleError('ArticoliSerice');
+        this.handleError = httpErrorHandler.createHandleError('LocationSerice');
         
     }
     getLocations(): Observable<LocationPagination> {
-        return this.http.get<LocationPagination>(this.articoliUrl)
+        return this.http.get<LocationPagination>(endpoints.location)
             .pipe(
                 catchError(error => this.handleError(error))
             );
     }
     getLocationAtPage(page:number): Observable<LocationPagination> {
-        return this.http.get<LocationPagination>(this.articoliUrl+`?page=${page}`)
+        return this.http.get<LocationPagination>(endpoints.location+`/page=${page}`)
             .pipe(
                 catchError(error => this.handleError(error))
             );
@@ -38,7 +38,7 @@ export class LocationService {
 
     /** GET bike detail from bike-detail endpoint */
     getLocationDetail(id: string): Observable<LocationPagination> {
-        return this.http.get<LocationPagination>(this.articoliUrl + `/${id}`)
+        return this.http.get<LocationPagination>(endpoints.location_datails + `/${id}`)
             .pipe(
                 catchError(error => this.handleError(error))
             );

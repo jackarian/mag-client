@@ -23,10 +23,10 @@ export class LocationListComponent implements OnInit {
     constructor(private locationService: LocationService, private route: ActivatedRoute) {}
 
     ngOnInit() {        
-        this.getArticoli();
+        this.getLocations();
     }
     
-    getArticoli(): void {
+    getLocations(): void {
        
         this.isLoading = true;
         this.locationService.getLocations()

@@ -1,0 +1,11 @@
+<div *ngIf="node">
+
+  <h2>{{node.descrizione | uppercase}} Details</h2>
+  <div><span>id: </span>{{node.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="node.descrizioneEstesa" placeholder="descrizione estesa"/>
+    </label>
+  </div>
+
+</div>

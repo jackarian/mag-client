@@ -9,14 +9,14 @@ export const endpoints = {
     user:   environment.apiUrl+"/user",//GET
     user_upadate:environment.apiUrl+"/user/update",//POST
     user_group: environment.apiUrl+"/user/group",//GET
-    installation: environment.apiUrl+"/installation",//GET
-    installation_details: environment.apiUrl+"/installation/details",//GET
-    installation_create: environment.apiUrl+"/installation/create",//POST
-    installation_update: environment.apiUrl+"/installation/update",//POST
-    location: environment.apiUrl+"/location",//GET params {offset,page_size}
-    location_datails: environment.apiUrl+"/location/{id}",//GET
+    installation: environment.apiUrl+"/installazione",//GET page
+    installation_details: environment.apiUrl+"/installazione/details/",//GET
+    installation_create: environment.apiUrl+"/installazione/create",//POST
+    installation_update: environment.apiUrl+"/installazione/update",//POST
+    location: environment.apiUrl+"/location/",//GET params {offset,page_size}
+    location_datails: environment.apiUrl+"/location/details/",//GET
     location_resources: environment.apiUrl+"/location/resuorces",//GET params {offset,page_size}
     location_resource_details: environment.apiUrl+"/location/resuorces/",//GET {id}
-    location_resource_create: environment.apiUrl+"/location/resuorces/{id}",//GET
+    location_resource_create: environment.apiUrl+"/location/resuorces/",//POST
     location_ssc: environment.apiUrl+"/location/ssc"
 };
