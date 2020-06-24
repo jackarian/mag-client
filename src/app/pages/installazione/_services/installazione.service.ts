@@ -7,6 +7,7 @@ import {HttpErrorHandler, HandleError} from '../../../shared/_services/http-hand
 import {environment} from '../../../../environments/environment';
 import {endpoints} from '../../../../environments/endpoint';
 import {InstallazionePagination} from '../installazione-pagination';
+import {Installazione} from '../installazione';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,7 @@ export class InstallazioneService {
                 catchError(error => this.handleError(error))
             );
     }
+    
+    
     
 }

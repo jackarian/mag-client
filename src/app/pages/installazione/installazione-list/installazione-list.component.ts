@@ -50,6 +50,7 @@ export class InstallazioneListComponent implements OnInit {
     }
     
     protected handleResponse(response: InstallazionePagination) {
+        
         this.isLoading = false;                
         this.pagination = response;               
         this.installazioni = response.data;                

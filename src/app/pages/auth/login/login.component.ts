@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 // App imports
 import { AuthService } from '../_services/auth.service';
 import { User } from '../user';
+
 import {Form} from '@angular/forms';
 
 @Component({
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(loginForm): void {
+      
     this.authService.onLogin(this.user).subscribe(
       (response) => {
         // get return url from route parameters or default to '/'
