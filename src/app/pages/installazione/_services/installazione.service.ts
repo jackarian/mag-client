@@ -23,9 +23,26 @@ export class InstallazioneService {
     }
     
     getInstallazioni(page_size:number,offset:number): Observable<InstallazionePagination> {
-        console.log('Call get installazioni');
+        //console.log('Call get installazioni');
         return this.http.get<InstallazionePagination>
             (endpoints.installation + `/${page_size}/${offset}`)
+            .pipe(
+                catchError(error => this.handleError(error))
+            );
+    }
+    aggiorna(installazione: Installazione): Observable<{}>{
+        return this.
+            http.
+            put<{}>(endpoints.installation_update + `/${installazione.id}`,installazione)
+            .pipe(
+                catchError(error => this.handleError(error))
+            );
+    }
+    
+    cancella(installazione: Installazione){
+        return this.
+            http.
+            put(endpoints.installation_remove + `/${installazione.id}`,installazione)
             .pipe(
                 catchError(error => this.handleError(error))
             );

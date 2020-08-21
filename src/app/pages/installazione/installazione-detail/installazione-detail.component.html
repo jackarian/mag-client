@@ -1,11 +1,32 @@
-<div *ngIf="node">
-
-  <h2>{{node.descrizione | uppercase}} Details</h2>
-  <div><span>id: </span>{{node.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="node.descrizioneEstesa" placeholder="descrizione estesa"/>
-    </label>
-  </div>
-
+<div *ngIf="node" class="form">
+    <form #form="ngForm" (ngSubmit)="submitForm(form.value)">
+        <fieldset>
+            <legend>{{node.descrizione | uppercase}} - {{node.id}}</legend>
+            <div class="form-group">
+                <label for="descrizione">Descrizione:</label>
+                <input type="text" class="form-control" id="descrizione" name="descrizione"  [(ngModel)]="node.descrizioneEstesa" 
+                       aria-describedby="descrizioneHelp" placeholder="descrizione estesa">
+                <small id="descrizioneHelp" class="form-text text-muted">Inserisci descrizione della location.</small>
+            </div>        
+            <div class="form-group">
+                <label for="dataInizioLavori">Inizio Lavori:</label>
+                <eui-datebox [(ngModel)]="node.dataInizioLavori" id="dataInizioLavori" name="dataInizioLavori"></eui-datebox>
+                <small id="dataInizioLavoriHelp" class="form-text text-muted">Inserisci data inizio lavori</small>
+            </div>
+            <div class="form-group">
+                <label for="dataFineLavori">Fine Lavori:</label>
+                <eui-datebox [(ngModel)]="node.dataFineLavori" id="dataFineLavori" name="dataFineLavori"></eui-datebox>
+                <small id="dataFineLavoriHelp" class="form-text text-muted">Inserisci data fine lavori</small>
+            </div>
+            <div class="form-group">
+                <label for="note">Note</label>
+                <input type="text" class="form-control" id="note"  name="note" [(ngModel)]="node.note" 
+                       aria-describedby="noteHelp" placeholder="note">
+                <small id="noteHelp" class="form-text text-muted">Inserisci note (facoltativo).</small>
+            </div>
+        </fieldset>
+        <div style="margin-bottom:20px">            
+            <button type="button" class="btn btn-primary" (click)="submitForm(form.value)">Aggiorna</button>
+        </div>
+    </form>    
 </div>

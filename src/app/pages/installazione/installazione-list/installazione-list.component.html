@@ -1,33 +1,35 @@
-<main role="main">
-    <div class="py-5 bg-light">
-        <div class="container" style="margin-top: 20px">           
-            <div *ngIf="isLoading" class="spinner">
-                <div class="double-bounce1"></div>
-                <div class="double-bounce2"></div>
-            </div>            
-            <div *ngIf="!isLoading" class="row">
-                <ul class="pagination">
-                    <li class="{{pagination.currentPage===1?'page-item disabled':'page-item'}}" >
-                        <button class="page-link"  (click)="goToPage(1)">First</button>
-                    </li>
-                    <li class="{{pagination.currentPage===1?'page-item disabled':'page-item'}}" >
-                        <button class="page-link"  (click)="goToPage(pagination.currentPage-1)" >Previous</button>
-                    </li>                    
-                    <li class="{{pagination.currentPage===pagination.lastPage?'page-item disabled':'page-item'}}">
-                        <button class="page-link" (click)="goToPage(pagination.currentPage+1)" >Next</button>
-                    </li>
-                    <li class="{{pagination.currentPage===pagination.lastPage?'page-item disabled':'page-item'}}" >
-                        <button class="page-link" (click)="goToPage(pagination.lastPage)">Last</button>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h2>Template</h2>
+<main role="main">    
+    <div class="container" style="margin-top: 60px;margin-left: 0px">           
+        <div *ngIf="isLoading" class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>            
+        <div *ngIf="!isLoading" class="row">
+            <ul class="pagination">
+                <li class="{{pagination.currentPage===1?'page-item disabled':'page-item'}}" >
+                    <button class="page-link"  (click)="goToPage(1)">First</button>
+                </li>
+                <li class="{{pagination.currentPage===1?'page-item disabled':'page-item'}}" >
+                    <button class="page-link"  (click)="goToPage(pagination.currentPage-1)" >Previous</button>
+                </li>                    
+                <li class="{{pagination.currentPage===pagination.lastPage?'page-item disabled':'page-item'}}">
+                    <button class="page-link" (click)="goToPage(pagination.currentPage+1)" >Next</button>
+                </li>
+                <li class="{{pagination.currentPage===pagination.lastPage?'page-item disabled':'page-item'}}" >
+                    <button class="page-link" (click)="goToPage(pagination.lastPage)">Last</button>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h2>Installazioni</h2>
                 <eui-tree [data]="installazioneTree" [(selection)]="selection" (selectionChange) = "onSelectionChange($event)">
                     <ng-template euiItemTemplate let-node>
-                        <span>{{node.text}} - inizio lavori: {{node.dataInizioLavori}}</span>                        
+                        <span>{{node.text}} - inizio lavori: {{node.dataInizioLavori|date:medium}}</span>                        
                     </ng-template>
                 </eui-tree>                
+            </div>
+            <div class="col-8">
                 <app-installazione-detail [node]="selectedNode"></app-installazione-detail>
             </div>
         </div>

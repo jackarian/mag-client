@@ -14,5 +14,9 @@ export class InstallazioneDetailComponent implements OnInit {
     ngOnInit() {
         
     }
+    
+    submitForm(value: any) {
+        alert(this.node.descrizioneEstesa);
+    }
 
 }
