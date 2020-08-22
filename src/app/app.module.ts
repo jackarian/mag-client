@@ -1,5 +1,5 @@
 import {BrowserModule, Title} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule,LOCALE_ID} from '@angular/core';
 import {HttpClientModule, HTTP_INTERCEPTORS } from  '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -15,6 +15,11 @@ import {HttpErrorHandler} from './shared/_services/http-handle-error.service';
 import {AppHttpInterceptorService} from './shared/_services/http-interceptor.service';
 import {NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
+import localeIt from '@angular/common/locales/it';
+import {registerLocaleData} from '@angular/common';
+
+registerLocaleData(localeIt);
 
 
 
@@ -41,7 +46,7 @@ import {NgbModule } from '@ng-bootstrap/ng-bootstrap';
             provide: HTTP_INTERCEPTORS,
             useClass: AppHttpInterceptorService,
             multi: true
-        }]
+        },{ provide: LOCALE_ID, useValue: 'it' }]
     ,
     bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 
 import {InstallazioneService} from '../_services/installazione.service';
 import {Installazione} from '../installazione';
+import {InstallazioneNode} from '../installazione-node';
 import {InstallazionePagination} from '../installazione-pagination';
 import {InstallazioneTree} from '../installazione-tree';
 @Component({
@@ -44,13 +45,13 @@ export class InstallazioneListComponent implements OnInit {
                 error => this.handleError(error));
                 
     }
-    onSelectionChange(node: Installazione){
+    onSelectionChange(node: InstallazioneNode){
         //console.log(node);
-        this.selectedNode =node;
+        this.selectedNode = node.value;
     }
     
     protected handleResponse(response: InstallazionePagination) {
-        
+        console.log(response);
         this.isLoading = false;                
         this.pagination = response;               
         this.installazioni = response.data;                

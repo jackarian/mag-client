@@ -19,7 +19,7 @@ export class HttpErrorHandler {
 
     return (response: HttpErrorResponse): Observable<T> => {
       // Optionally send the error to a third part error logging service
-      console.error(response);
+      //console.error(response);
 
       // Show a simple alert if error
       const message = (response.error instanceof ErrorEvent) ?

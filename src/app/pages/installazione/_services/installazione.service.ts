@@ -18,7 +18,7 @@ export class InstallazioneService {
     private handleError: HandleError;
 
     constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
-        this.handleError = httpErrorHandler.createHandleError('InstallationSerice');
+        this.handleError = httpErrorHandler.createHandleError('InstallationService');
         
     }
     
@@ -31,9 +31,10 @@ export class InstallazioneService {
             );
     }
     aggiorna(installazione: Installazione): Observable<{}>{
+        console.log("Aggiorna installazione");
         return this.
             http.
-            put<{}>(endpoints.installation_update + `/${installazione.id}`,installazione)
+            put<any>(endpoints.installation_update + `/${installazione.id}`,installazione)
             .pipe(
                 catchError(error => this.handleError(error))
             );

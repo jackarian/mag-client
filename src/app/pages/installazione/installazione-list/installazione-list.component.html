@@ -25,7 +25,7 @@
                 <h2>Installazioni</h2>
                 <eui-tree [data]="installazioneTree" [(selection)]="selection" (selectionChange) = "onSelectionChange($event)">
                     <ng-template euiItemTemplate let-node>
-                        <span>{{node.text}} - inizio lavori: {{node.dataInizioLavori|date:medium}}</span>                        
+                        <span>{{node.id}} - {{node.descrizione}}</span>                        
                     </ng-template>
                 </eui-tree>                
             </div>
