@@ -3,6 +3,8 @@ import {Installazione} from '../installazione';
 import {InstallazioneService} from '../_services/installazione.service';
 import localeIt from '@angular/common/locales/it';
 import { formatDate } from '@angular/common';
+import { NotificationService } from '@progress/kendo-angular-notification';
+
 @Component({
     selector: 'app-installazione-detail',
     templateUrl: './installazione-detail.component.html',
@@ -12,7 +14,7 @@ export class InstallazioneDetailComponent implements OnInit,OnChanges {
 
     @Input() node: Installazione;
     
-    constructor(private service: InstallazioneService) {}
+    constructor(private service: InstallazioneService,private notifer:NotificationService) {}
     private inizioLavori:Date;
     private fineLavori:Date;
     ngOnInit() {
@@ -26,6 +28,7 @@ export class InstallazioneDetailComponent implements OnInit,OnChanges {
         
     }
     aggiornaDate(node:Installazione){
+        
        if(node){       
        if(node.dataInizioLavori)
         this.inizioLavori = new Date(node.dataInizioLavori.toString());
@@ -48,13 +51,17 @@ export class InstallazioneDetailComponent implements OnInit,OnChanges {
         console.log(date)
         this.node.dataFineLavori = formatDate(date,'yyyy-MM-dd','it');
     }
-    protected handleResponse(response: any) {
-       console.log('Resp Aggiornamento');
-       console.log(response);
-        
-
+    
+     handleResponse(response: any) {
+       this.notifer.show({
+          content: 'Aggiornamento avvenuto con successo.',
+          animation: { type: 'fade', duration: 500 },
+          position: { horizontal: 'center', vertical: 'bottom' },
+          type: { style: 'info', icon: true },
+          closable: true
+      });
     }
-    protected handleError(error: any) {
+     handleError(error: any) {
         console.log('Errore'); 
         console.error(error);
     }

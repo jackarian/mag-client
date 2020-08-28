@@ -18,6 +18,11 @@ import {NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import localeIt from '@angular/common/locales/it';
 import {registerLocaleData} from '@angular/common';
+import { NotificationModule } from '@progress/kendo-angular-notification';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 registerLocaleData(localeIt);
 
@@ -37,7 +42,10 @@ registerLocaleData(localeIt);
         PermessiModule,
         LocationModule,
         InstallazioneModule,       
-        NgbModule
+        NgbModule,
+        NotificationModule,
+        DialogsModule,
+        BrowserAnimationsModule
 
     ],
     providers: [
