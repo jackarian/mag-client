@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable,ViewContainerRef} from '@angular/core';
 import {HttpClient, HttpParams, HttpErrorResponse} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
@@ -9,6 +9,7 @@ import {endpoints} from '../../../../environments/endpoint';
 import {InstallazionePagination} from '../installazione-pagination';
 import {Installazione} from '../installazione';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,14 +17,20 @@ export class InstallazioneService {
 
   
     private handleError: HandleError;
-
-    constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
-        this.handleError = httpErrorHandler.createHandleError('InstallationService');
+    private refDialog :ViewContainerRef;
+    constructor(private http: HttpClient, private httpErrorHandler: HttpErrorHandler) {
+       
         
     }
     
+    setupDialog(ref:ViewContainerRef){
+        this.refDialog = ref;
+        this.handleError = this.httpErrorHandler.createHandleError('InstallationService',ref);
+    }
+    
+    
     getInstallazioni(page_size:number,offset:number): Observable<InstallazionePagination> {
-        //console.log('Call get installazioni');
+        console.log('Call get installazioni');
         return this.http.get<InstallazionePagination>
             (endpoints.installation + `/${page_size}/${offset}`)
             .pipe(
@@ -31,7 +38,7 @@ export class InstallazioneService {
             );
     }
     aggiorna(installazione: Installazione): Observable<{}>{
-        console.log("Aggiorna installazione");
+        //console.log("Aggiorna installazione");
         return this.
             http.
             put<any>(endpoints.installation_update + `/${installazione.id}`,installazione)
@@ -43,7 +50,7 @@ export class InstallazioneService {
     cancella(installazione: Installazione){
         return this.
             http.
-            put(endpoints.installation_remove + `/${installazione.id}`,installazione)
+            delete(endpoints.installation_remove + `/${installazione.id}`)
             .pipe(
                 catchError(error => this.handleError(error))
             );

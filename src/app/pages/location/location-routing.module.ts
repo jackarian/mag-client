@@ -12,11 +12,13 @@ const routes: Routes = [{
     children: [
         {
             path: '',
-            component: LocationListComponent
+            component: LocationListComponent,
+            canActivate:[AuthGuard]
         },
         {
-            path: 'page/:page',
-            component: LocationDetailComponent
+            path: ':page/:offset',
+            component: LocationListComponent,
+             canActivate:[AuthGuard]
         },
         {
             path:':id',

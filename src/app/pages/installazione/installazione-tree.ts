@@ -16,4 +16,11 @@ export class InstallazioneTree {
             this.children.push(new InstallazioneNode(product));
         }
     }
+
+    updateChildren(childrenTo: Installazione[]) {
+        this.children =[];
+        for (var product of childrenTo) {
+            this.children.push(new InstallazioneNode(product));
+        }
+    }
 }

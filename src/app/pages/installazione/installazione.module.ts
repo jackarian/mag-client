@@ -16,6 +16,6 @@ import { InstallazioneDetailComponent } from './installazione-detail/installazio
     EasyUIModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],exports:[ InstallazioneListComponent,InstallazioneDetailComponent]
 })
 export class InstallazioneModule { }

@@ -4,35 +4,45 @@
             <div *ngIf="isLoading" class="spinner">
                 <div class="double-bounce1"></div>
                 <div class="double-bounce2"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-4" *ngFor="let articolo of articoli">
-                     <div class="card mb-4 box-shadow">                        
-                        <div class="card-body">
-                            <p>{{ articolo.descrizione }}</p>
-                            <p class="card-text">{{ articolo.prezzo1| currency:'EUR'}}</p>
-                            <a routerLink="/articoli/{{ articolo.codice }}" class="card-link">Vai ai dettagli</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+            </div>            
+
             <div *ngIf="!isLoading" class="row">
                 <ul class="pagination">
-                    <li class="{{pagination.current_page===1?'page-item disabled':'page-item'}}" >
+                    <li class="{{pagination.currentPage===1?'page-item disabled':'page-item'}}" >
                         <button class="page-link"  (click)="goToPage(1)">First</button>
                     </li>
-                    <li class="{{pagination.current_page===1?'page-item disabled':'page-item'}}" >
-                        <button class="page-link"  (click)="goToPage(pagination.current_page-1)" >Previous</button>
+                    <li class="{{pagination.currentPage===1?'page-item disabled':'page-item'}}" >
+                        <button class="page-link"  (click)="goToPage(pagination.currentPage-1)" >Previous</button>
                     </li>                    
-                    <li class="{{pagination.current_page===pagination.last_page?'page-item disabled':'page-item'}}">
-                        <button class="page-link" (click)="goToPage(pagination.current_page+1)" >Next</button>
+                    <li class="{{pagination.currentPage===pagination.lastPage?'page-item disabled':'page-item'}}">
+                        <button class="page-link" (click)="goToPage(pagination.currentPage+1)" >Next</button>
                     </li>
-                    <li class="{{pagination.current_page===pagination.last_page?'page-item disabled':'page-item'}}" >
-                        <button class="page-link" (click)="goToPage(pagination.last_page)">Last</button>
+                    <li class="{{pagination.currentPage===pagination.lastPage?'page-item disabled':'page-item'}}" >
+                        <button class="page-link" (click)="goToPage(pagination.lastPage)">Last</button>
                     </li>
                 </ul>
+                <button type="button" class="btn btn-sm btn-primary" (click)="addLocation()">
+                    Aggiungi
+                </button>
             </div>
         </div>
+        <div class="row">
+            <div class="col-2">
+                <h2>Location</h2>
+                <eui-tree [data]="locationTree" [(selection)]="selection" (selectionChange) = "onSelectionChange($event)">
+                    <ng-template euiItemTemplate let-node>
+                        <span>{{node.id}} - {{node.descrizione}}</span>                        
+                    </ng-template>
+                </eui-tree>                
+            </div>
+            <div class="col-4">
+                <app-location-detail [location]="selectedNode"></app-location-detail>
+            </div>
+            <div class="col-4">
+                <app-installazione-detail [node]="selectedInstallazione"></app-installazione-detail>
+            </div>    
+
+        </div>
     </div>
+    <ng-container #dialog></ng-container>
 </main>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,AfterViewInit,ViewChild, ViewContainerRef} from '@angular/core';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 
 import {InstallazioneService} from '../_services/installazione.service';
@@ -11,8 +11,12 @@ import {InstallazioneTree} from '../installazione-tree';
     templateUrl: './installazione-list.component.html',
     styleUrls: ['./installazione-list.component.scss']
 })
-export class InstallazioneListComponent implements OnInit {
+export class InstallazioneListComponent implements OnInit,AfterViewInit {
+    
 
+    @ViewChild("dialog", { read: ViewContainerRef ,static:true})
+    public containerRef: ViewContainerRef;
+    
     installazioni: Installazione[];
     installazioneTree:InstallazioneTree[];
     pagination: InstallazionePagination;
@@ -23,16 +27,23 @@ export class InstallazioneListComponent implements OnInit {
     
     constructor(private activeRoute: ActivatedRoute,
         private router: Router,
-        private service: InstallazioneService) {}
+        private service: InstallazioneService) {
+        
+       
+        }
 
-    ngOnInit() {
-         console.log('Init installazione-list-component');
-                this.isLoading = true;   
-                this.service.
+    ngAfterViewInit(): void {
+         this.service.setupDialog(this.containerRef);
+         this.service.
                 getInstallazioni(20,1)
                 .subscribe(
                 response => this.handleResponse(response),
                 error => this.handleError(error));
+    }
+    ngOnInit() {
+         console.log('Init installazione-list-component');
+                this.isLoading = true;   
+                
               
     }
     
