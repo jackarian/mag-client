@@ -1,11 +1,40 @@
-<div *ngIf="node">
+<div *ngIf="node" class="form">
+    <form #form="ngForm" (ngSubmit)="submitForm(form.value)">
+        <fieldset>
+            <legend>{{node.descrizione | uppercase}} - {{node.id}}</legend>
+            <div class="form-group">
+                <label for="descrizione">Descrizione:</label>
+                <input type="text" class="form-control" id="descrizione" name="descrizione"  [(ngModel)]="node.descrizione" 
+                       aria-describedby="descrizioneHelp" placeholder="descrizione estesa">
+                <small id="descrizioneHelp" class="form-text text-muted">Inserisci descrizione della location.</small>
+            </div>
+            <div class="form-group">
+                <label for="descEstesa">Descrizione Estesa:</label>
+                <input type="text" class="form-control" id="descrizione" name="descEstesa"  [(ngModel)]="node.descEstesa" 
+                       aria-describedby="descEstesaHelp" placeholder="descrizione estesa">
+                <small id="descEstesaHelp" class="form-text text-muted">Inserisci descrizione estesa della location.</small>
+            </div>
+            <div class="form-group">
+                <label for="dataInizioLavori">Data Inizio Lavori:</label>
+                <eui-datebox #dataInizioLavori [(ngModel)]="inizioLavori" aria-describedby="dataFineLavoriHelp" name="dataInizioLavori" (selectionChange) = "onDataInizioLavoriChange($event)"></eui-datebox>                
+                <small id="dataInizioLavoriHelp" class="form-text text-muted">Inserisci o modifica la data di inizio lavori.</small>
+            </div>
+            <div class="form-group">
+                <label for="dataFineLavori">Data Fine Lavori:</label>
+                <eui-datebox #dataFineLavori [(ngModel)]="fineLavori" aria-describedby="dataInizioLavoriHelp" name="dataFineLavori" (selectionChange) = "onDataFineLavoriChange($event)"></eui-datebox>                
+                <small id="dataFineLavoriHelp" class="form-text text-muted">Inserisci o modifica la data di fine lavori.</small>
+            </div>            
 
-  <h2>{{node.descrizione | uppercase}} Details</h2>
-  <div><span>id: </span>{{node.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="node.descrizioneEstesa" placeholder="descrizione estesa"/>
-    </label>
-  </div>
-
+            <div class="form-group">
+                <label for="note">Note</label>
+                <input type="text" class="form-control" id="note"  name="note" [(ngModel)]="node.note" 
+                       aria-describedby="noteHelp" placeholder="note">
+                <small id="noteHelp" class="form-text text-muted">Inserisci note (facoltativo).</small>
+            </div>
+        </fieldset>
+        <div style="margin-bottom:20px">            
+            <button type="button" class="btn btn-primary" (click)="submitForm(form.value)">Aggiorna</button>
+        </div>
+    </form>
+    
 </div>

@@ -8,7 +8,7 @@ import {catchError} from 'rxjs/operators';
 import {environment} from '../../../../environments/environment';
 import {Permesso} from '../permesso';
 import {HttpErrorHandler, HandleError} from '../../../shared/_services/http-handle-error.service';
-
+import { DialogRef} from '@progress/kendo-angular-dialog';
 @Injectable({
     providedIn: 'root'
 })
@@ -18,8 +18,8 @@ export class PermessiService {
     private permessoUrl = this.apiUrl + '/tipiaccessi';
     private handleError: HandleError;
 
-    constructor(private http: HttpClient,httpErrorHandler:  HttpErrorHandler) {
-         this.handleError  =  httpErrorHandler.createHandleError('PermessiSerice');
+    constructor(private http: HttpClient,httpErrorHandler:  HttpErrorHandler, private dialog:DialogRef) {
+         //this.handleError  =  httpErrorHandler.createHandleError('PermessiSerice',dialog);
     }
     
     

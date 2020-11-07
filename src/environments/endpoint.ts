@@ -10,13 +10,16 @@ export const endpoints = {
     user_upadate:environment.apiUrl+"/user/update",//POST
     user_group: environment.apiUrl+"/user/group",//GET
     installation: environment.apiUrl+"/installazione",//GET page
-    installation_details: environment.apiUrl+"/installazione/details/",//GET
-    installation_create: environment.apiUrl+"/installazione/create",//POST
-    installation_update: environment.apiUrl+"/installazione/update",//POST
-    location: environment.apiUrl+"/location/",//GET params {offset,page_size}
-    location_datails: environment.apiUrl+"/location/details/",//GET
+    installation_details: environment.apiUrl+"/installazione/",//GET
+    installation_create: environment.apiUrl+"/installazione/",//POST
+    installation_update: environment.apiUrl+"/installazione/update",//PUT
+    installation_remove: environment.apiUrl+"/installazione/remove",//DELETE
+    location: environment.apiUrl+"/location",//GET params {offset,page_size}
+    location_create: environment.apiUrl+"/location",//POST
+    location_datails: environment.apiUrl+"/location/${id}",//GET
+    location_update: environment.apiUrl+"/location/update",//PUT
     location_resources: environment.apiUrl+"/location/resuorces",//GET params {offset,page_size}
-    location_resource_details: environment.apiUrl+"/location/resuorces/",//GET {id}
-    location_resource_create: environment.apiUrl+"/location/resuorces/",//POST
+    location_resource_details: environment.apiUrl+"/location/resources/",//GET {id}
+    location_resource_create: environment.apiUrl+"/location/resources/",//POST
     location_ssc: environment.apiUrl+"/location/ssc"
 };

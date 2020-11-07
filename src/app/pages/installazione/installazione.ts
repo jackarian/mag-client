@@ -1,10 +1,10 @@
 export class Installazione {
     descrizione: string;
-    descrizioneEstesa: string;    
+    descEstesa: string;    
     tecnico: number;
     text:string;
-    dataInizioLavori:Date;
-    dataFineLavori: Date;
+    dataInizioLavori:String;
+    dataFineLavori: String;
     scaduta: boolean;
     creation_date:Date;
     lastupdate: Date;

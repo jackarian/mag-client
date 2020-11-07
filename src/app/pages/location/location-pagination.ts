@@ -3,17 +3,16 @@ import {Location} from './location';
 export class LocationPagination {
 
 
-    current_page: number;
-    data: Location[];
-    first_page_url: string;
+    currentPage: number;
+    pageSize: number;
+    lastPage: number;
+    totalPage: number;
+    totalRows: number;
     from: number;
-    last_page: number;
-    last_page_url: string;
-    next_page_url: string;
-    path: string;
-    per_page: number;
-    prev_page_url: string;
     to: number;
-    total: number;
+    data: Location[];
+    end: number;
+    start: number;
+    offset: number;
 
 }

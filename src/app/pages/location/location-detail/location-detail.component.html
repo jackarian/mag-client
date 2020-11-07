@@ -1,1 +1,61 @@
-<p>location-detail works!</p>
+<div *ngIf="location" class="form">
+    <form #form="ngForm" (ngSubmit)="submitForm(form.value)">
+        <fieldset>
+            <legend>{{location.title | uppercase}} - {{location.id}}</legend>        
+            <div class="form-group">
+                <label for="descrizione">Descrizione:</label>
+                <input type="text" class="form-control" id="title" name="title"  [(ngModel)]="location.title" 
+                       aria-describedby="descrizioneHelp" placeholder="Descrizione">
+                <small id="descrizioneHelp" class="form-text text-muted">Inserisci descrizione della location.</small>
+            </div>
+            <div class="form-group">
+                <label for="ipAddress">Indirizzo IP Hotspot Controller associato:</label>
+                <input type="text" class="form-control" id="descrizione" name="ipAddress"  [(ngModel)]="location.ipAddress" 
+                       aria-describedby="ipAddressHelp" placeholder="Indirizzo ip hotspot controller">
+                <small id="ipAddressHelp" class="form-text text-muted">Inserisci indirizzo IP Hotspot Controller associato.</small>
+            </div>
+            <div class="form-group">
+                <label for="ipPortService">Porta Hotspot Controller associato:</label>
+                <input type="text" class="form-control" id="ipPortService" name="ipPortService"  [(ngModel)]="location.ipPortService" 
+                       aria-describedby="ipPortServiceHelp" placeholder="porta hotspot controller">           
+                <small id="ipPortServiceHelp" class="form-text text-muted">Inserisci o modifica porta Hotspot Controller.</small>
+            </div>
+            <div class="form-group">
+                <label for="login">Hotspot Controller Login:</label>
+                <input type="text" class="form-control" id="login" name="login"  [(ngModel)]="location.login" 
+                       aria-describedby="loginHelp" placeholder="login">           
+                <small id="loginHelp" class="form-text text-muted">Inserisci o modifica login.</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Porta Hotspot Password:</label>
+                <input type="password" class="form-control" id="ipPortService" name="password"  [(ngModel)]="location.password" 
+                       aria-describedby="passwordHelp" placeholder="password">           
+                <small id="passwordHelp" class="form-text text-muted">Inserisci o modifica password hostspot.</small>
+            </div>
+            <div class="form-group">
+                <label for="hotspotTag">Tag Hotspot:</label>
+                <input type="text" class="form-control" id="hotspotTag" name="hotspotTag"  [(ngModel)]="location.hotspotTag" 
+                       aria-describedby="hotspotTagHelp" placeholder="descrizione estesa">
+                <small id="hotspotTagHelp" class="form-text text-muted">Inserisci o modifica tag hotspot.</small>
+            </div>
+            <div class="form-group">
+                <label for="stato">Stato Attivazione:</label>
+                <eui-combobox #combo [(ngModel)]="location.stato" name="stato" id="stato" [data]="stati" (selectionChange)="statoChange($event)"></eui-combobox>                
+                <small id="statoHelp" class="form-text text-muted">Inserisci o modifica stato attivazione location.</small>
+            </div>
+        </fieldset>
+        <div style="margin-bottom:20px">           
+            <div *ngIf="location.id!=null">
+                <button type="button" class="btn btn-primary" (click)="submitForm(form.value)">
+                    Aggiorna
+                </button>
+            </div>
+            <div *ngIf="location.id==null">
+                <button type="button" class="btn btn-primary" (click)="submitForm(form.value)">
+                    Aggiungi
+                </button>
+            </div>
+        </div>
+    </form>
+    <ng-container #dialogDetails></ng-container>
+</div>

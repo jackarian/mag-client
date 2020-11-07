@@ -21,7 +21,7 @@ export class AppHttpInterceptorService implements
        
         if (authToken) {
             // Clone the request to add the new header.
-             console.log('Setting token:'+authToken);
+             
             const authReq = req.clone(
                 {
                     headers: req.headers.set('Authorization', `Bearer ${authToken}`)
@@ -31,19 +31,23 @@ export class AppHttpInterceptorService implements
             // send the newly created request
             return next.handle(authReq).pipe(
                 tap((event: HttpEvent<any>) => {
-                    if (event instanceof HttpResponse) {
-                        // Response wiht   HttpResponse type
+                    if (event instanceof HttpResponse) {                        
                         console.log('TAP function',              event);
                     }
                 }, (err: any) => {
-                    //console.log(err);
+                    
+                    console.log('Interceptor');
+                    console.log(err);
+                    
                     if (err instanceof
                         HttpErrorResponse) {
                         if (err.status === 401) {
 
-                            localStorage.removeItem('token');
-
+                            this.auth.onLogout();                            
                             this.router.navigate(['/']);
+                            
+                        }else if(err.status === 0){
+                            
                         }
                     }
                 })
