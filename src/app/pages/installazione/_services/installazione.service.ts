@@ -1,10 +1,9 @@
-import {Injectable,ViewContainerRef} from '@angular/core';
+import {Injectable, ViewContainerRef} from '@angular/core';
 import {HttpClient, HttpParams, HttpErrorResponse} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {HttpErrorHandler, HandleError} from '../../../shared/_services/http-handle-error.service';
-import {environment} from '../../../../environments/environment';
 import {endpoints} from '../../../../environments/endpoint';
 import {InstallazionePagination} from '../installazione-pagination';
 import {Installazione} from '../installazione';
@@ -15,21 +14,22 @@ import {Installazione} from '../installazione';
 })
 export class InstallazioneService {
 
-  
+
     private handleError: HandleError;
-    private refDialog :ViewContainerRef;
+    private refDialog: ViewContainerRef;
     constructor(private http: HttpClient, private httpErrorHandler: HttpErrorHandler) {
-       
-        
+
+
     }
-    
-    setupDialog(ref:ViewContainerRef){
+
+    setupDialog(ref: ViewContainerRef) {
         this.refDialog = ref;
-        this.handleError = this.httpErrorHandler.createHandleError('InstallationService',ref);
+        this.handleError = this.httpErrorHandler.createHandleError('InstallationService', ref);
     }
-    
-    
-    getInstallazioni(page_size:number,offset:number): Observable<InstallazionePagination> {
+
+
+    // tslint:disable-next-line: variable-name
+    getInstallazioni(page_size: number, offset: number): Observable<InstallazionePagination> {
         console.log('Call get installazioni');
         return this.http.get<InstallazionePagination>
             (endpoints.installation + `/${page_size}/${offset}`)
@@ -37,17 +37,17 @@ export class InstallazioneService {
                 catchError(error => this.handleError(error))
             );
     }
-    aggiorna(installazione: Installazione): Observable<{}>{
-        //console.log("Aggiorna installazione");
+    aggiorna(installazione: Installazione): Observable<{}> {
+        // console.log("Aggiorna installazione");
         return this.
             http.
-            put<any>(endpoints.installation_update + `/${installazione.id}`,installazione)
+            put<any>(endpoints.installation_update + `/${installazione.id}`, installazione)
             .pipe(
                 catchError(error => this.handleError(error))
             );
     }
-    
-    cancella(installazione: Installazione){
+
+    cancella(installazione: Installazione) {
         return this.
             http.
             delete(endpoints.installation_remove + `/${installazione.id}`)
@@ -55,7 +55,7 @@ export class InstallazioneService {
                 catchError(error => this.handleError(error))
             );
     }
-    
-    
-    
+
+
+
 }

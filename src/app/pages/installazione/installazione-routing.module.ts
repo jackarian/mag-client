@@ -9,14 +9,14 @@ const routes: Routes = [{
         {
             path: '',
             component: InstallazioneListComponent,
-            canActivate:[AuthGuard]
+            canActivate: [AuthGuard]
         },
         {
             path: ':page/:offset',
             component: InstallazioneListComponent,
-            canActivate:[AuthGuard]
+            canActivate: [AuthGuard]
         }]
-       
+
 }
 ];
 

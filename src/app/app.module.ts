@@ -1,6 +1,6 @@
 import {BrowserModule, Title} from '@angular/platform-browser';
-import {NgModule,LOCALE_ID} from '@angular/core';
-import {HttpClientModule, HTTP_INTERCEPTORS } from  '@angular/common/http';
+import {NgModule, LOCALE_ID} from '@angular/core';
+import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 // Application modules
@@ -11,6 +11,7 @@ import {PermessiModule} from './pages/permessi/permessi.module';
 import {LocationModule} from './pages/location/location.module';
 
 import {InstallazioneModule} from './pages/installazione/installazione.module';
+import {RisorseModule} from './pages/risorse/risorse.module';
 import {HttpErrorHandler} from './shared/_services/http-handle-error.service';
 import {AppHttpInterceptorService} from './shared/_services/http-interceptor.service';
 import {NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
+
 registerLocaleData(localeIt);
 
 
@@ -31,17 +33,18 @@ registerLocaleData(localeIt);
 @NgModule({
     declarations: [
         AppComponent,
-        NavComponent,
-    ],    
+        NavComponent
+    ],
     imports: [
-        BrowserModule,       
+        BrowserModule,
         AppRoutingModule,
         HttpClientModule,
         HomeModule,
         AuthModule,
         PermessiModule,
         LocationModule,
-        InstallazioneModule,       
+        InstallazioneModule,
+        RisorseModule,
         NgbModule,
         NotificationModule,
         DialogsModule,
@@ -54,7 +57,7 @@ registerLocaleData(localeIt);
             provide: HTTP_INTERCEPTORS,
             useClass: AppHttpInterceptorService,
             multi: true
-        },{ provide: LOCALE_ID, useValue: 'it' }]
+        }, { provide: LOCALE_ID, useValue: 'it' }]
     ,
     bootstrap: [AppComponent]
 })
